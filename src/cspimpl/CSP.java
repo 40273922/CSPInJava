@@ -14,7 +14,7 @@ public class CSP{
     public static void f(int n,Consumer<Integer> consumer){//传入消费式函数
         if(n == 0)
             consumer.accept(1);
-        else f(n - 1,integer->consumer.accept(n * integer));//integer从何处传入？
+        else f(n - 1,integer->consumer.accept(n * integer));//integer从何处传入？答：只在n==0时被赋值为1，下面都是n值的贡献。
     }
 
     public static void main(String[] args){
