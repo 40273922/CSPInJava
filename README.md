@@ -1,4 +1,5 @@
 # CSPInJSP[Java中CSP风格的简单递归函数详解.md](https://github.com/40273922/CSPInJSP/files/11180611/Java.CSP.md)
+#[个人博客原文](https://blog.csdn.net/m0_73469755/article/details/130022550?spm=1001.2014.3001.5502)
 # Java中CSP风格的简单递归函数详解
 
 ## 什么是CSP?
