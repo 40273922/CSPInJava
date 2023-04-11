@@ -1,5 +1,8 @@
 package course;
 
+/**
+ * @author Zhai Jinpei
+ */
 public class MapT{
     static Course<String,String> course = new Course<>();
 
