@@ -11,7 +11,7 @@ public class FileSearch{
     }
     static void sortRead(String path){
         try{
-            String[] s = Files.readString(Path.of(path)).toLowerCase().split("[\u0000-@]|\\[[-`]|\\[\\{-\u007f]|\\s++");
+            String[] s = Files.readString(Path.of(path)).toLowerCase().split(" |[\u0000-@]|[\\[-`]|[{-\uffff]|\\s++");
             printArray(s);
         }catch(IOException e){
             e.printStackTrace();
@@ -20,7 +20,7 @@ public class FileSearch{
     static void printArray(String[] s){
         Arrays.sort(s);
         for(int i = 0;i < s.length;i++){
-            if(s[i].equals("")||s[i].equals(s[i-1])) System.out.print("");
+            if(i< s.length-1&&(s[i].equals("")||s[i].equals(s[i+1]))) System.out.print("");
             else System.out.println(s[i]);
         }
     }
