@@ -93,3 +93,6 @@ public class CSP{
 
 实际上，integer只在n==0时被赋值为1，然后这个1就会随着每次n的传入而自乘n，即1*1*2*3*4*5。
 以上就是csp递归在Java中的简单实现。主要是理解函数式接口和底层栈帧的知识。
+## CSP以及函数式编程在Java中的应用（长期更新）
+### [打印杨辉三角](https://github.com/40273922/CSPInJSP/blob/master/src/cspimpl/CSP_Appliaction.java)
+
