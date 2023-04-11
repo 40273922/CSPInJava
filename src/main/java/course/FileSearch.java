@@ -14,17 +14,12 @@ public class FileSearch{
     }
     static void sortRead(String path){
         try{
-            String[] s = Files.readString(Path.of(path)).toLowerCase().split(" |[\u0000-@]|[\\[-`]|[{-\uffff]|\\s++");
-            printArray(s);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    static void printArray(String[] s){
-        Arrays.sort(s);
-        for(int i = 0;i < s.length;i++){
-            if(i< s.length-1&&(s[i].equals("")||s[i].equals(s[i+1]))) System.out.print("");
-            else System.out.println(s[i]);
-        }
+            var s = Files.readString(Path.of(path)).toLowerCase().split(" |[\u0000-@]|[\\[-`]|[{-\uffff]|\\s++");
+            Arrays.sort(s);
+            for(int i = 0;i < s.length;i++){
+                if(i< s.length-1&&("".equals(s[i])||s[i].equals(s[i+1]))) System.out.print("");
+                else System.out.println(s[i]);
+            }
+        }catch(IOException ignored){}
     }
 }
