@@ -1,5 +1,6 @@
-package course;
+package fileutils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,8 +10,8 @@ import java.util.Arrays;
  * @author Zhai Jinpei
  */
 public class FileSearch{
-    public static void main(String[] args){
-        sortRead(args[0]);
+    public static void main(String[] args) throws IOException{
+//        sortRead(args[0]);
     }
     static void sortRead(String path){
         try{
