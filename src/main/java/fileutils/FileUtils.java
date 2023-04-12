@@ -56,9 +56,9 @@ public class FileUtils extends File{
         clr.close();
         return this;
     }
-    public FileUtils dir(File file) {
-        String list = Arrays.toString(file.list());
-        String newlist = list.replace("[", file.getAbsolutePath() + "\n- ")
+    public FileUtils dir() {
+        String list = Arrays.toString(this.list());
+        String newlist = list.replace("[", this.getAbsolutePath() + "\n- ")
                 .replace("]", "\n")
                 .replace(",", "\n-");
         System.out.println(newlist);
