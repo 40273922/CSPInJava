@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * @author Zhai Jinpei
@@ -53,6 +54,29 @@ public class FileUtils extends File{
         clr.write("");
         clr.flush();
         clr.close();
+        return this;
+    }
+    public FileUtils dir(File file) {
+        String list = Arrays.toString(file.list());
+        String newlist = list.replace("[", file.getAbsolutePath() + "\n- ")
+                .replace("]", "\n")
+                .replace(",", "\n-");
+        System.out.println(newlist);
+        return this;
+    }
+    public FileUtils rmv(String p){
+        this.cd(p).delete();
+        return this;
+    }
+    @SuppressWarnings("all")
+    public FileUtils cd(String name) {
+        File[] files = this.listFiles();
+        for (int i = 0;i < Objects.requireNonNull(files).length;i++) {
+            if (files[i].getName().equals(name)) {
+                return new FileUtils(this.getAbsolutePath() + File.separator + name);
+            }
+        }
+        System.out.println("none");
         return this;
     }
 }
