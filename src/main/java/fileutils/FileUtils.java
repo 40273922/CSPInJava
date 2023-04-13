@@ -3,6 +3,8 @@ package fileutils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -29,6 +31,40 @@ public class FileUtils extends File{
     public FileUtils write(String... strings) throws FileNotFoundException{
         System.setOut(new PrintStream(this));
         System.out.println(Arrays.toString(strings).trim().replaceAll("\\[|]",""));
+        return this;
+    }
+    @SuppressWarnings("all")
+    public FileUtils readTo(String p) throws FileNotFoundException{
+        StringBuffer stringBuffer = new StringBuffer();
+        char[] read = new char[1024];
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(this));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(p))
+        )
+        {
+            int n = 0;
+            while((n=bufferedReader.read())!=-1){
+                stringBuffer.append(bufferedReader.read(read,0,n));
+            }
+            bufferedWriter.write(String.valueOf(stringBuffer).trim());
+        }catch(IOException e){
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+    public FileUtils readToConsole() throws IOException{
+        var s = Files.readString(Path.of(this.getAbsolutePath()));
+        System.out.println(s);
+        return this;
+    }
+    public FileUtils replCont(String p){
+        try(
+            FileWriter fileWriter = new FileWriter(Path.of(this.getAbsolutePath()).toFile())){
+            fileWriter.write(p);
+            fileWriter.flush();
+        }catch(IOException e){
+            throw new RuntimeException(e);
+        }
+
         return this;
     }
     public FileUtils cdU(){
