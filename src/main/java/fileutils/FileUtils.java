@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Objects;
-
+@SuppressWarnings("all")
 /**
  * @author Zhai Jinpei
  */
@@ -20,6 +20,10 @@ public class FileUtils extends File{
         if(!(fileUtils).exists())
             fileUtils.mkdir();
         return fileUtils;
+    }
+    public FileUtils logs(String s){
+        System.out.println("-------------------Logs:--------------------\n"+s);
+        return this;
     }
     public FileUtils cf(String s) throws IOException{
         String path = this.getAbsolutePath()+"\\"+s;
@@ -34,20 +38,15 @@ public class FileUtils extends File{
         return this;
     }
     @SuppressWarnings("all")
-    public FileUtils readTo(String p) throws FileNotFoundException{
-        StringBuffer stringBuffer = new StringBuffer();
-        char[] read = new char[1024];
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(this));
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(p))
-        )
-        {
-            int n = 0;
-            while((n=bufferedReader.read())!=-1){
-                stringBuffer.append(bufferedReader.read(read,0,n));
-            }
-            bufferedWriter.write(String.valueOf(stringBuffer).trim());
-        }catch(IOException e){
-            throw new RuntimeException(e);
+    public FileUtils readTo(String p) throws IOException{
+        var s = Files.readString(Path.of(this.getAbsolutePath()));
+        try(
+                OutputStreamWriter osw = new OutputStreamWriter(
+                        new FileOutputStream(p, true),
+                        "utf-8");
+        ){
+            osw.write(s);
+            osw.flush();
         }
         return this;
     }
@@ -64,7 +63,6 @@ public class FileUtils extends File{
         }catch(IOException e){
             throw new RuntimeException(e);
         }
-
         return this;
     }
     public FileUtils cdU(){

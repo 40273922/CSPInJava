@@ -7,9 +7,14 @@ import java.io.IOException;
  */
 public class FileUTest{
     public static void main(String[] args) throws IOException{
-        System.out.println("替换之前");
-        FileUtils file = new FileUtils("D:\\").mk("Myfile").mk("myDir").cf("m.txt").readToConsole();
-        System.out.println("替换之后");
-        file.replCont("我的名字是欧欧，是一只狗").readToConsole();
+        FileUtils file = new FileUtils("D:\\").mk("Myfile").mk("myDir").
+                getFile("m.txt").replCont("我的名字是{name},是{Type}").logs("替换之前").
+                readToConsole();
+        file.replCont("我的名字是欧欧，是一只狗").logs("替换之后").
+                readToConsole().
+                readTo(file.cdU().cf("logger.txt").getAbsolutePath());
+        file.cdU().getFile("logger.txt").
+                logs("------------------logger.txt-------------------").
+                readToConsole();
     }
 }
